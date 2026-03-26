@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Class Kingdom</title>
+</head>
+<body>
+
+<h1>Welcome to the Game</h1>
+<p id="gold">Gold: 0</p>
+
+<button onclick="addGold()">+10 Gold</button>
+
+<script>
+let gold = 0;
+
+function addGold() {
+  gold += 10;
+  document.getElementById("gold").innerText = "Gold: " + gold;
+}
+</script>
+
+</body>
+</html>
