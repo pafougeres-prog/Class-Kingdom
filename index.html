@@ -12,25 +12,31 @@
 <input id="nickname" placeholder="Nickname">
 <input id="password" placeholder="Password (5 digits)" type="password">
 <button onclick="login()">Login</button>
-  
-<div>
-  <img id="player_class" width="150" style="image-rendering: pixelated;">
-  <p id="player"></p>
-  <p id="tribe"></p>
-  <p id="stats">❤️ 0 | 🛡️ 0 | ⚔️ 0</p>
-  <p id="gold">Gold: 0</p>
-</div>
+<div id="game" style="display: flex; justify-content: space-between; align-items: flex-start;">
 
-<button onclick="addGold()">+10 Gold</button>
-<button onclick="startQuest1()">Quest 1</button>
-
-<div id="quest">
-
-  <div id="boss">
-    <img src="images/quest1/stick_master.png" width="150" style="image-rendering: pixelated;">
+  <!-- 🧍 JOUEUR (GAUCHE) -->
+  <div id="playerSide" style="width: 45%; text-align: center;">
+    <img id="player_class" width="150" style="image-rendering: pixelated;">
+    <p id="player"></p>
+    <p id="tribe"></p>
+    <p id="stats">❤️ 0 | 🛡️ 0 | ⚔️ 0</p>
+    <p id="gold">Gold: 0</p>
   </div>
 
-  <div id="dialogue"></div>
+  <!-- 👹 BOSS + QUÊTE (DROITE) -->
+  <div id="questSide" style="width: 45%; text-align: center;">
+    
+    <img id="boss_img" src="images/quest1/stick_master.png"
+         width="150"
+         style="image-rendering: pixelated;">
+
+    <br><br>
+
+    <button onclick="startQuest1()">Quest 1</button>
+
+    <div id="dialogue" style="margin-top: 20px;"></div>
+
+  </div>
 
 </div>
 
