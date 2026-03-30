@@ -5,9 +5,8 @@ function startQuest1() {
   `;
 }
 
-
 function q1_ex1() {
-  document.getElementById("quest").innerHTML = `
+  document.getElementById("dialogue").innerHTML = `
     <p>🧙‍♂️ "What is mother?"</p>
 
     <button onclick="correctAnswer()">แม่</button>
