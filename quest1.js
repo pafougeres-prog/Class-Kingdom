@@ -1,12 +1,6 @@
 function startQuest1() {
-  document.getElementById("quest").innerHTML = `
-    
-    <img src="images/quest1/stick_master.png" 
-         width="150" 
-         style="image-rendering: pixelated;">
-
+  document.getElementById("dialogue").innerHTML = `
     <p>🧙‍♂️ "Hello traveler! I love sticks! Do you know your family?"</p>
-
     <button onclick="q1_ex1()">Start</button>
   `;
 }
