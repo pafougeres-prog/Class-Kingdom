@@ -2,10 +2,8 @@
 <html>
 <head>
   <title>Class Kingdom</title>
-</head>
-  <img id="avatar" width="120" style="image-rendering: pixelated;">
 <body>
-
+  <img id="class" width="120" style="image-rendering: pixelated;">
 <h1>Class Kingdom</h1>
 
 <input id="nickname" placeholder="Nickname">
@@ -62,7 +60,7 @@ async function login() {
 function updateUI(player) {
   document.getElementById("player").innerText = "Player: " + player.nickname;
   document.getElementById("gold").innerText = "Gold: " + player.gold;
-  document.getElementById("avatar").src = player.avatar;
+  document.getElementById("class").src = player.class;
 }
 
 async function addGold() {
