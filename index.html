@@ -8,7 +8,11 @@
 <body>
 
 <h1>Class Kingdom</h1>
-
+  
+<input id="nickname" placeholder="Nickname">
+<input id="password" placeholder="Password (5 digits)" type="password">
+<button onclick="login()">Login</button>
+  
 <div>
   <img id="player_class" width="120" style="image-rendering: pixelated;">
   <p id="player"></p>
@@ -17,10 +21,6 @@
   <p id="gold">Gold: 0</p>
 </div>
 
-<input id="nickname" placeholder="Nickname">
-<input id="password" placeholder="Password (5 digits)" type="password">
-
-<button onclick="login()">Login</button>
 <button onclick="addGold()">+10 Gold</button>
 <button onclick="startQuest1()">Quest 1</button>
 
