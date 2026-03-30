@@ -8,7 +8,7 @@
   <h1 style="color: blue;">Class Kingdom</h1>
 <div>
   <img id="player_class" width="120" style="image-rendering: pixelated;">
-  <p id="player"></p>
+  <p id="player"> id="tribe"</p>
    <p id="stats">
     ❤️ 0 | 🛡️ 0 | ⚔️ 0
   </p>
@@ -70,6 +70,7 @@ async function login() {
 
 function updateUI(player) {
   document.getElementById("player").innerText = "Player: " + player.nickname;
+  document.getElementById("tribe").innerText = "Classroom" + player.tribe;
   document.getElementById("gold").innerText = "Gold: " + player.gold;
   document.getElementById("player_class").src = player.player_class;
   document.getElementById("stats").innerText =
