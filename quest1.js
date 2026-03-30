@@ -12,13 +12,6 @@ function startQuest1() {
 }
 
 
-function startQuest1() {
-  document.getElementById("quest").innerHTML = `
-    <p>🧙‍♂️ "Hello traveler! I love sticks! Do you know your family?"</p>
-    <button onclick="q1_ex1()">Start</button>
-  `;
-}
-
 function q1_ex1() {
   document.getElementById("quest").innerHTML = `
     <p>🧙‍♂️ "What is mother?"</p>
