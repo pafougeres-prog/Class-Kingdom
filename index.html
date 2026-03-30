@@ -69,7 +69,7 @@ async function login() {
 
 function updateUI(player) {
   document.getElementById("player").innerText = "Player: " + player.nickname;
-  document.getElementById("tribe").innerText = "Classroom" + player.tribe;
+  document.getElementById("tribe").innerText = "Classroom: " + player.tribe;
   document.getElementById("gold").innerText = "Gold: " + player.gold;
   document.getElementById("player_class").src = player.player_class;
   document.getElementById("stats").innerText =
