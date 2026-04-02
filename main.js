@@ -47,15 +47,6 @@ function updateUI(player) {
     " | ⚔️ " + player.attack;
 }
 
-
-  let { data } = await supabaseClient
-    .from("players")
-    .select("*")
-    .eq("id", playerId)
-    .single();
-
-
-
 // Ajout à l'inventaire
 function addItem(item) {
   inventory.push(item);
