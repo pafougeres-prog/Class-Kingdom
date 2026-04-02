@@ -103,3 +103,31 @@ function updateInventoryUI() {
   document.getElementById("inventory").innerHTML =
     "<h3>Inventory</h3>" +
     inventory.map(i => `<p>${i.name} (${i.rarity})</p>`).join("");
+
+
+//acheter un coffre//
+  async function buyChest() {
+  let cost = 100;
+
+  let { data } = await supabaseClient
+    .from("players")
+    .select("*")
+    .eq("id", playerId)
+    .single();
+
+  if (data.gold < cost) {
+    alert("Not enough gold!");
+    return;
+  }
+
+  let newGold = data.gold - cost;
+
+  await supabaseClient
+    .from("players")
+    .update({ gold: newGold })
+    .eq("id", playerId);
+
+  document.getElementById("gold").innerText = "Gold: " + newGold;
+
+  openChest();
+}
