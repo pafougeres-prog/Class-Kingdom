@@ -6,6 +6,11 @@ const supabaseClient = createClient(supabaseUrl, supabaseKey);
 
 let playerId = null;
 
+// ========================
+// INVENTORY
+// ========================
+let inventory = [];
+
 async function login() {
   const nickname = document.getElementById("nickname").value.trim().toLowerCase();
   const password = document.getElementById("password").value.trim();
@@ -42,11 +47,6 @@ function updateUI(player) {
     " | ⚔️ " + player.attack;
 }
 
-async function addGold() {
-  if (!playerId) {
-    alert("Login first");
-    return;
-  }
 
   let { data } = await supabaseClient
     .from("players")
@@ -54,57 +54,25 @@ async function addGold() {
     .eq("id", playerId)
     .single();
 
-let inventory = [];
-  
-  await supabaseClient
-    .from("players")
-    .update({ gold: newGold })
-    .eq("id", playerId);
 
-  document.getElementById("gold").innerText = "Gold: " + newGold;
-}
-async function addGoldSimple(amount) {
-  if (!playerId) {
-    alert("Login first");
-    return;
-  }
 
-  let { data, error } = await supabaseClient
-    .from("players")
-    .select("*")
-    .eq("id", playerId)
-    .single();
-
-  if (error) {
-    console.log(error);
-    return;
-  }
-
-  let newGold = data.gold + amount;
-
-  await supabaseClient
-    .from("players")
-    .update({ gold: newGold })
-    .eq("id", playerId);
-
-  document.getElementById("gold").innerText = "Gold: " + newGold;
-}
-
-//Ajout a l inventaire//
+// Ajout à l'inventaire
 function addItem(item) {
   inventory.push(item);
   updateInventoryUI();
 }
 
-//update inventaire//
+// Affichage inventaire
 function updateInventoryUI() {
   document.getElementById("inventory").innerHTML =
     "<h3>Inventory</h3>" +
     inventory.map(i => `<p>${i.name} (${i.rarity})</p>`).join("");
+}
 
-
-//acheter un coffre//
-  async function buyChest() {
+// ========================
+// SHOP
+// ========================
+async function buyChest() {
   let cost = 100;
 
   let { data } = await supabaseClient
@@ -127,5 +95,5 @@ function updateInventoryUI() {
 
   document.getElementById("gold").innerText = "Gold: " + newGold;
 
-  openChest();
+  openChest(); // ⚠️ doit exister dans items.js
 }
