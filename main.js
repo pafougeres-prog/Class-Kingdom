@@ -90,8 +90,16 @@ async function addGoldSimple(amount) {
   document.getElementById("gold").innerText = "Gold: " + newGold;
 }
 
+}
+
 //Ajout a l inventaire//
 function addItem(item) {
   inventory.push(item);
   updateInventoryUI();
 }
+
+//update inventaire//
+function updateInventoryUI() {
+  document.getElementById("inventory").innerHTML =
+    "<h3>Inventory</h3>" +
+    inventory.map(i => `<p>${i.name} (${i.rarity})</p>`).join("");
