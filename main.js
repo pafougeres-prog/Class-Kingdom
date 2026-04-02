@@ -132,3 +132,12 @@ async function addGoldSimple(amount) {
     console.log(error);
     return;
   }
+    let newGold = data.gold + amount;
+
+  await supabaseClient
+    .from("players")
+    .update({ gold: newGold })
+    .eq("id", playerId);
+
+  document.getElementById("gold").innerText = "Gold: " + newGold;
+}
