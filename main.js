@@ -90,8 +90,6 @@ async function addGoldSimple(amount) {
   document.getElementById("gold").innerText = "Gold: " + newGold;
 }
 
-}
-
 //Ajout a l inventaire//
 function addItem(item) {
   inventory.push(item);
