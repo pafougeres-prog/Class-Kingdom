@@ -1,2 +1,2 @@
 # Class-Kingdom
-Game for students to practice english without realising it
+Game for Thai students to practice English
