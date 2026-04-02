@@ -16,12 +16,12 @@ function q1_ex1() {
 
 const questions = [
   { q: "What is mother?", options: ["แม่", "พ่อ"], correct: 0 },
-  { q: "What is father?", options: ["พ่อ", "แม่"], correct: 0 },
+  { q: "What is father?", options: ["แม่", "พ่อ"], correct: 1 },
   { q: "What is brother?", options: ["พี่ชาย", "แม่"], correct: 0 },
-  { q: "What is sister?", options: ["พี่สาว", "พ่อ"], correct: 0 },
+  { q: "What is sister?", options: ["พ่อ", "พี่สาว"], correct: 1 },
 
-  { q: "What is your name?", options: ["My name is John", "I name John"], correct: 0 },
-  { q: "How old are you?", options: ["I am 15", "I 15"], correct: 0 },
+  { q: "What is your name?", options: ["I name John", "My name is John"], correct: 1 },
+  { q: "How old are you?", options: ["I 15", "I am 15"], correct: 1 },
   { q: "Where do you live?", options: ["I live in Phichit", "I am live Phichit"], correct: 0 },
   { q: "What does your father do?", options: ["He is a farmer", "He farmer"], correct: 0 },
 ];
