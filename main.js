@@ -89,55 +89,31 @@ async function buyChest() {
   openChest(); // ⚠️ doit exister dans items.js
 }
 
+// AJOUT DE GOLD
+// SI pas de joueur log, ajout annulé
 async function addGoldSimple(amount) {
   if (!playerId) {
     alert("Login first");
     return;
   }
-
+// SI OK attend reponse de SUPABASE
   let { data, error } = await supabaseClient
     .from("players")
     .select("*")
     .eq("id", playerId)
     .single();
-
+// SI ERREUR alors retour
   if (error) {
     console.log(error);
     return;
   }
-
+// SI SUPABASE REPOND UPDATE GOLD JOUEUR
   let newGold = data.gold + amount;
 
   await supabaseClient
     .from("players")
     .update({ gold: newGold })
     .eq("id", playerId);
-
-  document.getElementById("gold").innerText = "Gold: " + newGold;
-}
-
-async function addGoldSimple(amount) {
-  if (!playerId) {
-    alert("Login first");
-    return;
-  }
-
-  let { data, error } = await supabaseClient
-    .from("players")
-    .select("*")
-    .eq("id", playerId)
-    .single();
-
-  if (error) {
-    console.log(error);
-    return;
-  }
-    let newGold = data.gold + amount;
-
-  await supabaseClient
-    .from("players")
-    .update({ gold: newGold })
-    .eq("id", playerId);
-
+// NOUVEAU solde de gold
   document.getElementById("gold").innerText = "Gold: " + newGold;
 }
