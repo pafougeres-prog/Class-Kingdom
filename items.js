@@ -1,3 +1,4 @@
+//LISTE DES ITEMS//
 const items = [
   // COMMON (80%)
   { name: "Old Stick", rarity: "common", attack: 1 },
@@ -31,4 +32,15 @@ function getRandomItem() {
   }
 
   return pool[Math.floor(Math.random() * pool.length)];
+}
+
+//Ouvrir un coffre//
+function openChest() {
+  let item = getRandomItem();
+
+  addItem(item);
+
+  document.getElementById("dialogue").innerHTML = `
+    <p>🎁 You got: ${item.name} (${item.rarity})</p>
+  `;
 }
