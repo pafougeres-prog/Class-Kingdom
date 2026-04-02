@@ -54,8 +54,8 @@ async function addGold() {
     .eq("id", playerId)
     .single();
 
-  let newGold = data.gold + 10;
-
+let inventory = [];
+  
   await supabaseClient
     .from("players")
     .update({ gold: newGold })
@@ -88,4 +88,10 @@ async function addGoldSimple(amount) {
     .eq("id", playerId);
 
   document.getElementById("gold").innerText = "Gold: " + newGold;
+}
+
+//Ajout a l inventaire//
+function addItem(item) {
+  inventory.push(item);
+  updateInventoryUI();
 }
