@@ -115,3 +115,20 @@ async function addGoldSimple(amount) {
 
   document.getElementById("gold").innerText = "Gold: " + newGold;
 }
+
+async function addGoldSimple(amount) {
+  if (!playerId) {
+    alert("Login first");
+    return;
+  }
+
+  let { data, error } = await supabaseClient
+    .from("players")
+    .select("*")
+    .eq("id", playerId)
+    .single();
+
+  if (error) {
+    console.log(error);
+    return;
+  }
