@@ -81,9 +81,12 @@ async function login() {
     return;
   }
 
+
+
+  
   playerId = data[0].id;
   updateUI(data[0]);
-  
+
 // SI PAS D'ÉQUIPEMENT
 equipment = data[0].equipment || equipment;
 // ÉQUIPEMENT
