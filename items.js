@@ -29,7 +29,7 @@ const items = [
   { name: "leather boots", type: "helmet", rarity: "common", armor: 1 },
   { name: "spiked boots", type: "helmet", rarity: "rare", armor: 3 },
   { name: "Knight greaves", type: "helmet", rarity: "epic", armor: 6 },
-  { name: "Dragon fist", type: "helmet", rarity: "legendary", armor: 10 },
+  { name: "Dragon paws", type: "helmet", rarity: "legendary", armor: 10 },
   
 ];
 
