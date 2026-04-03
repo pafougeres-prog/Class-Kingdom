@@ -24,8 +24,8 @@ let playerId = null;
 // Affichage inventaire
 // ========================
 function updateInventoryUI() {
-  document.getElementById("inventory").innerHTML =
-    "<h3>Inventory</h3>" +
+  document.getElementById("equipment").innerHTML =
+    "<h3>Equipment</h3>" +
     inventory.map(i => `<p>${i.name} (${i.rarity})</p>`).join("");
 }
 
@@ -173,7 +173,7 @@ async function addGoldSimple(amount) {
 }
 
 // ========================
-// EQUIPMENT rarety
+// EQUIPMENT rareté
 // ========================
 const rarityOrder = {
   common: 1,
@@ -201,7 +201,7 @@ function equipItem(item) {
 // EQUIPMENT visuel
 // ========================
 function updateEquipmentUI() {
-  document.getElementById("inventory").innerHTML = `
+  document.getElementById("equipment").innerHTML = `
     <h3>Equipment</h3>
     <p>⚔️ Weapon: ${equipment.weapon?.name || "None"}</p>
     <p>🪖 Helmet: ${equipment.helmet?.name || "None"}</p>
