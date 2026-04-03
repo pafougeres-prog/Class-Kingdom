@@ -115,7 +115,7 @@ function updateStats() {
 
   let totalAttack = baseAttack;
   let totalArmor = baseArmor;
-
+}
   Object.values(equipment).forEach(item => {
     if (item) {
       totalAttack += item.attack || 0;
