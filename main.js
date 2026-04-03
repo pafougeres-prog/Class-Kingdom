@@ -32,18 +32,26 @@ function updateInventoryUI() {
 // ========================
 // updateUI() du joueur
 // ========================
-function updateUI(player) {
-  document.getElementById("player").innerText = "Player: " + player.nickname;
-  document.getElementById("tribe").innerText = "Classroom: " + player.tribe;
-  document.getElementById("gold").innerText = "Gold: " + player.gold;
-  document.getElementById("player_class").src = player.player_class;
+function updateStats() {
+  let baseHealth = 100;
+  let baseAttack = 5;
+  let baseArmor = 2;
+
+  let totalAttack = baseAttack;
+  let totalArmor = baseArmor;
+
+  Object.values(equipment).forEach(item => {
+    if (item) {
+      totalAttack += item.attack || 0;
+      totalArmor += item.armor || 0;
+    }
+  });
 
   document.getElementById("stats").innerText =
-    "❤️ " + player.health +
-    " | 🛡️ " + player.armor +
-    " | ⚔️ " + player.attack;
+    "❤️ " + baseHealth +
+    " | 🛡️ " + totalArmor +
+    " | ⚔️ " + totalAttack;
 }
-
 
 // ========================
 // EQUIPMENT
@@ -91,7 +99,7 @@ async function login() {
 equipment = data[0].equipment || equipment;
 // ÉQUIPEMENT
 updateEquipmentUI();
-updateStats();
+
  
   
 }
