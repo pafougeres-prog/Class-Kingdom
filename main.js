@@ -83,8 +83,13 @@ async function login() {
 
   playerId = data[0].id;
   updateUI(data[0]);
-  updateEquipmentUI(); ✅
-  updateStats(); ✅
+  
+// SI PAS D'ÉQUIPEMENT
+equipment = data[0].equipment || equipment;
+// ÉQUIPEMENT
+updateEquipmentUI();
+updateStats();
+ 
   
 }
 
@@ -106,12 +111,8 @@ function updateStats() {
       totalArmor += item.armor || 0;
     }
   });
-
-  document.getElementById("stats").innerText =
-    "❤️ " + baseHealth +
-    " | 🛡️ " + totalArmor +
-    " | ⚔️ " + totalAttack;
-}
+  
+updateStats();
 
 
 // ========================
@@ -171,6 +172,7 @@ async function addGoldSimple(amount) {
     .from("players")
     .update({ gold: newGold })
     .eq("id", playerId);
+  
 // NOUVEAU solde de gold
   document.getElementById("gold").innerText = "Gold: " + newGold;
 }
