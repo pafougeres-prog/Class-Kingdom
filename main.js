@@ -4,12 +4,50 @@ const supabaseKey = "sb_publishable_2NpNBMV2yoVX5kNKLZyzPA_WCCEGt2Y";
 const { createClient } = supabase;
 const supabaseClient = createClient(supabaseUrl, supabaseKey);
 
+
+
+// ========================
+// ========================
+// Variables
+// ========================
+// ========================
+
+
+
+// ========================
+// Player Identification
+// ========================
 let playerId = null;
+
+
+// ========================
+// Affichage inventaire
+// ========================
+function updateInventoryUI() {
+  document.getElementById("inventory").innerHTML =
+    "<h3>Inventory</h3>" +
+    inventory.map(i => `<p>${i.name} (${i.rarity})</p>`).join("");
+}
+
+// ========================
+// updateUI() du joueur
+// ========================
+function updateUI(player) {
+  document.getElementById("player").innerText = "Player: " + player.nickname;
+  document.getElementById("tribe").innerText = "Classroom: " + player.tribe;
+  document.getElementById("gold").innerText = "Gold: " + player.gold;
+  document.getElementById("player_class").src = player.player_class;
+
+  document.getElementById("stats").innerText =
+    "❤️ " + player.health +
+    " | 🛡️ " + player.armor +
+    " | ⚔️ " + player.attack;
+}
+
 
 // ========================
 // EQUIPMENT
 // ========================
-
 let equipment = {
   weapon: null,
   helmet: null,
@@ -18,12 +56,11 @@ let equipment = {
   belt: null,
   pet: null
 };
-// ========================
-// inventory
-// ========================
 
-let inventory = [];
 
+// ========================
+// Login
+// ========================
 async function login() {
   const nickname = document.getElementById("nickname").value.trim().toLowerCase();
   const password = document.getElementById("password").value.trim();
@@ -48,30 +85,31 @@ async function login() {
   updateUI(data[0]);
 }
 
-function updateUI(player) {
-  document.getElementById("player").innerText = "Player: " + player.nickname;
-  document.getElementById("tribe").innerText = "Classroom: " + player.tribe;
-  document.getElementById("gold").innerText = "Gold: " + player.gold;
-  document.getElementById("player_class").src = player.player_class;
+
+// ========================
+// STATS DU JOUEUR
+// ========================
+function updateStats() {
+  let baseHealth = 100;
+  let baseAttack = 5;
+  let baseArmor = 2;
+
+  let totalAttack = baseAttack;
+  let totalArmor = baseArmor;
+
+  Object.values(equipment).forEach(item => {
+    if (item) {
+      totalAttack += item.attack || 0;
+      totalArmor += item.armor || 0;
+    }
+  });
 
   document.getElementById("stats").innerText =
-    "❤️ " + player.health +
-    " | 🛡️ " + player.armor +
-    " | ⚔️ " + player.attack;
+    "❤️ " + baseHealth +
+    " | 🛡️ " + totalArmor +
+    " | ⚔️ " + totalAttack;
 }
 
-// Ajout à l'inventaire
-function addItem(item) {
-  inventory.push(item);
-  updateInventoryUI();
-}
-
-// Affichage inventaire
-function updateInventoryUI() {
-  document.getElementById("inventory").innerHTML =
-    "<h3>Inventory</h3>" +
-    inventory.map(i => `<p>${i.name} (${i.rarity})</p>`).join("");
-}
 
 // ========================
 // SHOP
@@ -102,7 +140,10 @@ async function buyChest() {
   openChest(); // ⚠️ doit exister dans items.js
 }
 
-// AJOUT DE GOLD
+// ========================
+// Ajout gold
+// ========================
+
 // SI pas de joueur log, ajout annulé
 async function addGoldSimple(amount) {
   if (!playerId) {
@@ -129,4 +170,44 @@ async function addGoldSimple(amount) {
     .eq("id", playerId);
 // NOUVEAU solde de gold
   document.getElementById("gold").innerText = "Gold: " + newGold;
+}
+
+// ========================
+// EQUIPMENT rarety
+// ========================
+const rarityOrder = {
+  common: 1,
+  rare: 2,
+  epic: 3,
+  legendary: 4
+};
+
+// ========================
+// EQUIPMENT haute rarete>lower rarete
+// ========================
+function equipItem(item) {
+  let current = equipment[item.type];
+
+  if (!current || rarityOrder[item.rarity] > rarityOrder[current.rarity]) {
+    equipment[item.type] = item;
+    updateEquipmentUI();
+    updateStats();
+    saveEquipment();
+  } else {
+    alert("You already have better equipment!");
+  }
+}
+// ========================
+// EQUIPMENT visuel
+// ========================
+function updateEquipmentUI() {
+  document.getElementById("inventory").innerHTML = `
+    <h3>Equipment</h3>
+    <p>⚔️ Weapon: ${equipment.weapon?.name || "None"}</p>
+    <p>🪖 Helmet: ${equipment.helmet?.name || "None"}</p>
+    <p>🛡️ Armor: ${equipment.armor?.name || "None"}</p>
+    <p>👢 Boots: ${equipment.boots?.name || "None"}</p>
+    <p>🎗️ Belt: ${equipment.belt?.name || "None"}</p>
+    <p>🐺 Pet: ${equipment.pet?.name || "None"}</p>
+  `;
 }
