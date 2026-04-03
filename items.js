@@ -36,21 +36,20 @@ const items = [
 
 //RANDOM ITEM//
 function getRandomItem() {
-  let roll = Math.random() * 100;
+  let roll = Math.random();
 
-  let pool;
+  let rarity;
 
-  if (roll < 80) {
-    pool = items.filter(i => i.rarity === "common");
-  } else if (roll < 95) {
-    pool = items.filter(i => i.rarity === "uncommon");
-  } else if (roll < 99) {
-    pool = items.filter(i => i.rarity === "rare");
-  } else {
-    pool = items.filter(i => i.rarity === "legendary");
-  }
+  if (roll < 0.8) rarity = "common";
+  else if (roll < 0.9) rarity = "rare";
+  else if (roll < 0.99) rarity = "epic";
+  else rarity = "legendary";
 
-  return pool[Math.floor(Math.random() * pool.length)];
+  let pool = items.filter(i => i.rarity === rarity);
+
+  let item = pool[Math.floor(Math.random() * pool.length)];
+
+  return item;
 }
 
 //Ouvrir un coffre//
