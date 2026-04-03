@@ -83,6 +83,9 @@ async function login() {
 
   playerId = data[0].id;
   updateUI(data[0]);
+  updateEquipmentUI(); ✅
+  updateStats(); ✅
+  
 }
 
 
