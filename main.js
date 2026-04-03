@@ -7,8 +7,21 @@ const supabaseClient = createClient(supabaseUrl, supabaseKey);
 let playerId = null;
 
 // ========================
-// INVENTORY
+// EQUIPMENT
 // ========================
+
+let equipment = {
+  weapon: null,
+  helmet: null,
+  armor: null,
+  boots: null,
+  belt: null,
+  pet: null
+};
+// ========================
+// inventory
+// ========================
+
 let inventory = [];
 
 async function login() {
