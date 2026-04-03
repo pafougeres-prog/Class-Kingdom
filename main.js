@@ -23,10 +23,10 @@ let playerId = null;
 // ========================
 // Affichage inventaire
 // ========================
-function updateInventoryUI() {
+function updateequipmentsUI() {
   document.getElementById("equipment").innerHTML =
     "<h3>Equipment</h3>" +
-    inventory.map(i => `<p>${i.name} (${i.rarity})</p>`).join("");
+    equipments.map(i => `<p>${i.name} (${i.rarity})</p>`).join("");
 }
 
 // ========================
@@ -123,7 +123,6 @@ function updateStats() {
     }
   });
   
-updateStats();
 
 
 // ========================
